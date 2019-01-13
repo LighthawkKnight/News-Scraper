@@ -1,0 +1,26 @@
+{
+  "name": "worldnews-mongo-scraper",
+  "version": "1.0.0",
+  "description": "Scraper app for r/worldnews",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LighthawkKnight/News-Scraper.git"
+  },
+  "author": "Jeff Daquioag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LighthawkKnight/News-Scraper/issues"
+  },
+  "homepage": "https://github.com/LighthawkKnight/News-Scraper#readme",
+  "dependencies": {
+    "express": "4.16.4",
+    "express-handlebars": "3.0.0",
+    "mongoose": "5.4.3",
+    "cheerio": "1.0.0-rc.2",
+    "axios": "0.18.0"
+  }
+}
