@@ -1,3 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">r/worldnews Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link active" href="/saved">Saved Posts 
+                <span class="sr-only">(current)</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
 <div class = "container">
     <div class="row">
         <div class="col-sm-12">
@@ -8,25 +24,31 @@
                 <!-- card Heading for the retrieved articles box -->
                 <div class="card-header">
                     <strong>
-                    <i class="fa fa-table"></i> Current Top Posts</strong>
+                    <i class="fa fa-table"></i> Saved Posts</strong>
                 </div>
 
                 <!-- This main card will hold each of the resulting articles -->
                 <div class="card-body" id="posts-section">
-                    {{!-- {{#each posts}} --}}
+                    {{#if posts}}
+                    {{#each posts}}
                         <ul class = "list-group">
                             <ul class = "list-group-item">
-                                <h5><strong>Post Title</strong></h5>
-                                <a href="/">http://www.link.com</a>
+                                <h5><strong>{{title}}</strong></h5>
+                                <a href={{link}}>{{link}}</a><br><br>
+                                <form action = "/api/unsave" method = "POST">
+                                    <input hidden name = "id" value = {{_id}}> 
+                                    <button id="{{_id}}"class="btn btn-danger btn-sm unsave-btn" type = "submit">Unsave</button>
+                                </form>
                             </ul>
                         </ul>
-                    {{!-- {{/each}} --}}
+                    {{/each}}
+                    {{else}}
                         <ul class = "list-group">
                             <ul class = "list-group-item">
-                                <h5><strong>2nd Post Title</strong></h5>
-                                <a href="/">http://www.link2.com</a>
+                                <h5>No posts yet</h5>
                             </ul>
                         </ul>
+                    {{/if}}
                 </div>
             </div>
         </div>

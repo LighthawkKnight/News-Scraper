@@ -3,22 +3,19 @@ const db = require('../models');
 module.exports = function (app) {
 
     app.get("/", (req, res) => {
-        db.Post.deleteMany({}).then(
-        db.Post.find({}).then(posts => {
+        db.Post.find({isSaved: false}).then(posts => {
             res.render('index', {posts: posts});
         }).catch(err => {
             res.json(err);
-        }))
+        })
     })
 
     app.get("/saved", (req, res) => {
-        res.render("saved");
+        db.Post.find({isSaved: true}).then(posts => {
+            res.render('saved', {posts: posts});
+        }).catch(err => {
+            res.json(err);
+        })
     })
 
-    
-    app.get("/clear", (req, res) => {
-        db.Post.deleteMany({}).then(
-            res.redirect("/")
-        )
-    })
 }

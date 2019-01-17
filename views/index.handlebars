@@ -10,8 +10,8 @@
                 <span class="sr-only">(current)</span>
             </a>
             <a class="nav-item nav-link" href="/saved">Saved Posts</a>
-            <a href="/scrape" class="btn btn-info active" role="button" aria-pressed="true">Scrape r/worldnews</a>
-            <a href="/clear" class="btn btn-danger active" role="button" aria-pressed="true">Clear Posts</a>
+            <a href="/api/scrape" class="btn btn-info active" role="button" aria-pressed="true">Scrape r/worldnews</a>
+            <a href="/api/clear" class="btn btn-danger active" role="button" aria-pressed="true">Clear Posts</a>
         </div>
     </div>
 </nav>
@@ -36,8 +36,11 @@
                         <ul class = "list-group">
                             <ul class = "list-group-item">
                                 <h5><strong>{{title}}</strong></h5>
-                                <a href={{link}}>{{link}}</a><br>
-                                <h7>{{date}}</h7>
+                                <a href={{link}}>{{link}}</a><br><br>
+                                <form action = "/api/save" method = "POST">
+                                    <input hidden name = "id" value = {{_id}}> 
+                                    <button id="{{_id}}"class="btn btn-primary btn-sm save-btn" type = "submit">Save</button>
+                                </form>
                             </ul>
                         </ul>
                     {{/each}}
