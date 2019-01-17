@@ -1,3 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">r/worldnews Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home
+                <span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-item nav-link" href="/saved">Saved Posts</a>
+            <a href="/scrape" class="btn btn-info active" role="button" aria-pressed="true">Scrape r/worldnews</a>
+            <a href="/clear" class="btn btn-danger active" role="button" aria-pressed="true">Clear Posts</a>
+        </div>
+    </div>
+</nav>
+
 <div class = "container">
     <div class="row">
         <div class="col-sm-12">
@@ -13,20 +31,23 @@
 
                 <!-- This main card will hold each of the resulting articles -->
                 <div class="card-body" id="posts-section">
-                    {{!-- {{#each posts}} --}}
+                    {{#if posts}}
+                    {{#each posts}}
                         <ul class = "list-group">
                             <ul class = "list-group-item">
-                                <h5><strong>Post Title</strong></h5>
-                                <a href="/">http://www.link.com</a>
+                                <h5><strong>{{title}}</strong></h5>
+                                <a href={{link}}>{{link}}</a><br>
+                                <h7>{{date}}</h7>
                             </ul>
                         </ul>
-                    {{!-- {{/each}} --}}
+                    {{/each}}
+                    {{else}}
                         <ul class = "list-group">
                             <ul class = "list-group-item">
-                                <h5><strong>2nd Post Title</strong></h5>
-                                <a href="/">http://www.link2.com</a>
+                                <h5>No posts yet</h5>
                             </ul>
                         </ul>
+                    {{/if}}
                 </div>
             </div>
         </div>

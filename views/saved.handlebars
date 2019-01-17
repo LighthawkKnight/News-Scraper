@@ -1,0 +1,34 @@
+<div class = "container">
+    <div class="row">
+        <div class="col-sm-12">
+            <br>
+            <!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+            <div class="card">
+
+                <!-- card Heading for the retrieved articles box -->
+                <div class="card-header">
+                    <strong>
+                    <i class="fa fa-table"></i> Current Top Posts</strong>
+                </div>
+
+                <!-- This main card will hold each of the resulting articles -->
+                <div class="card-body" id="posts-section">
+                    {{!-- {{#each posts}} --}}
+                        <ul class = "list-group">
+                            <ul class = "list-group-item">
+                                <h5><strong>Post Title</strong></h5>
+                                <a href="/">http://www.link.com</a>
+                            </ul>
+                        </ul>
+                    {{!-- {{/each}} --}}
+                        <ul class = "list-group">
+                            <ul class = "list-group-item">
+                                <h5><strong>2nd Post Title</strong></h5>
+                                <a href="/">http://www.link2.com</a>
+                            </ul>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
