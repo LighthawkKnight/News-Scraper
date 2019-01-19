@@ -22,6 +22,10 @@ const PostSchema = new Schema ({
     isSaved: {
         type: Boolean,
         default: false
+    },
+
+    comment: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
     }
 })
 

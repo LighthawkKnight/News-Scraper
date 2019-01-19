@@ -46,7 +46,9 @@ module.exports = function(app) {
             {$set: {isSaved: true}})
         .then(
             res.redirect("/")
-        )
+        ).catch(err => {
+            res.json(err);
+        })
     })
 
     app.post("/api/unsave", (req, res) => {
@@ -55,11 +57,52 @@ module.exports = function(app) {
             {$set: {isSaved: false}})
         .then(
             res.redirect("/saved")
-        )
+        ).catch(err => {
+            res.json(err);
+        })
     })
 
+    app.get("/api/comment/:id", (req, res) => {
+        db.Post.find(
+            { _id: req.params.id })
+        .populate({
+            path: 'comment',
+            model: 'Comment'
+        }).then(post => {
+            res.json(post);
+        }).catch(err => {
+            res.json(err);
+        })
+    })
 
+    app.post("/api/comment/:id", (req, res) => {
+        db.Comment.create(req.body)
+        .then(comment => {
+            console.log(comment);
+            db.Post.findOneAndUpdate(
+                { _id: req.params.id }, 
+                {$push: { comment: comment._id }}, 
+                { new: true }
+            ).then(post => {
+                res.json(post);
+            })
+        }).catch(err => {
+            res.json(err);
+        })
+    })
 
-
+    app.delete("/api/comment/:id", (req,res) => {
+        db.Comment.findByIdAndRemove(
+            { _id: req.params.id })
+        .then(comment => {
+            return db.Post.findOneAndUpdate(
+                {comment: req.params.id }, 
+                { $pullAll: [{ comment: req.params.id }]});
+        }).then(post => {
+            res.json(post);
+        }).catch(err => {
+            res.json(err);
+        })
+    })
 
 }
